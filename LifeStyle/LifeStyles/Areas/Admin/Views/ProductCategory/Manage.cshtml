@@ -1,0 +1,95 @@
+﻿
+@model LifeStyles.Areas.Admin.Models.EntityProductCategory
+@{
+    ViewBag.title = "ProductCategory";
+    Layout = "~/Views/main.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+       
+       
+        if ('@ViewBag.Message' != '') {
+            $("#cateid").val("");
+            $("#CateName").val("");          
+          
+            alert('@ViewBag.Message');
+            window.location = '@(System.Configuration.ConfigurationManager.AppSettings["SitePath"].ToString() + "Admin/ProductCategory/Display")';
+
+        }
+    });
+
+</script>
+
+
+@using (Html.BeginForm("Manage", "ProductCategory", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+
+        <div class="content content-wrapper">
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="col-xs-12 col-lg-12 col-md-12">
+                            <div class="box-body">
+                                <div class="form-group col-xs-12 col-lg-12 col-md-12">
+                                    <div class="col-md-2">
+                                        <label>
+                                            PRODUCT CATEGORY
+                                        </label>
+                                    </div>
+                                    <div class="col-md-5 col-xs-12">
+                                        <div class="col-md-2">
+                                            <label>
+                                                CategoryId <span class="required">*</span>
+                                            </label>
+                                        </div>
+
+                                        @Html.TextBoxFor(m => m.Catid, new {id="cateid", @class = "form-control" })
+
+
+                                        <div class="col-md-3">
+                                            @Html.ValidationMessageFor(m => m.Catid, null, new { id = "vCatId", name = "vCatid", style = "color:red;font-style:italic;" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-5 col-xs-12">
+                                        <div class="col-md-2">
+                                            <label>
+                                                Product Category Name <span class="required">*</span>
+                                            </label>
+                                        </div>
+
+                                        @Html.TextBoxFor(m => m.CatName, new { @class = "form-control", maxlength = "99",id="CateName" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        @Html.ValidationMessageFor(m => m.CatName, null, new { id = "vCatName", name = "vCatName", style = "color:red;font-style:italic;" })
+                                    </div>
+
+                                </div>
+                                <div class="form-group col-xs-12 col-lg-12 col-md-12">
+
+
+                                    <div class="col-md-5">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 10px;">
+                                <div class="col-md-5 col-xs-12">
+                                </div>
+                                <div class="col-md-2 col-xs-12">
+                                    <input type="submit" id="btnSubmit" name="btnSubmit" value="Save" class="btn btn-primary btn-block pull-right" />
+                                </div>
+                                <div class="col-md-5 col-xs-12">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

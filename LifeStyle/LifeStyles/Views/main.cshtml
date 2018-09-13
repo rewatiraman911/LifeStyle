@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    @Styles.Render("~/content/css")
+    @Scripts.Render("~/content/js")
+
+    <link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+</head>
+<body class="tm-gray-bg">
+    <div>
+        @Html.Partial("header")
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+    <div>
+        @Html.Partial("footer")
+    </div>
+</body>
+</html>

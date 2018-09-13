@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DairyHubModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Email_id" />
+          </Key>
+          <Property Name="Email_id" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PhoneNumber" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="imgdata">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="filename" Type="varchar" MaxLength="30" />
+          <Property Name="Proid" Type="varchar" MaxLength="10" />
+          <Property Name="Catid" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Order_">
+          <Key>
+            <PropertyRef Name="orderID" />
+          </Key>
+          <Property Name="orderID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Email_id" Type="nvarchar" MaxLength="30" />
+          <Property Name="Proid" Type="varchar" MaxLength="10" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="status_" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Proid" />
+          </Key>
+          <Property Name="Proid" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Catid" Type="varchar" MaxLength="10" />
+          <Property Name="ProductName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="isActive" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductCategory">
+          <Key>
+            <PropertyRef Name="Catid" />
+          </Key>
+          <Property Name="Catid" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CatName" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="tblUSer">
+          <Key>
+            <PropertyRef Name="emailid" />
+          </Key>
+          <Property Name="emailid" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="pass" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="usertype" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <Association Name="efk_id">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Order_" Type="Self.Order_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Email_id" />
+            </Principal>
+            <Dependent Role="Order_">
+              <PropertyRef Name="Email_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_id">
+          <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategory">
+              <PropertyRef Name="Catid" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="Catid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ofk_id">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Order_" Type="Self.Order_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Proid" />
+            </Principal>
+            <Dependent Role="Order_">
+              <PropertyRef Name="Proid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DairyHubModelStoreContainer">
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="imgdata" EntityType="Self.imgdata" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order_" EntityType="Self.Order_" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUSer" EntityType="Self.tblUSer" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="efk_id" Association="Self.efk_id">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Order_" EntitySet="Order_" />
+          </AssociationSet>
+          <AssociationSet Name="fk_id" Association="Self.fk_id">
+            <End Role="ProductCategory" EntitySet="ProductCategory" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="ofk_id" Association="Self.ofk_id">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Order_" EntitySet="Order_" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DairyHubModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Email_id" />
+          </Key>
+          <Property Name="Email_id" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhoneNumber" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order_" Relationship="Self.efk_id" FromRole="Customer" ToRole="Order_" />
+        </EntityType>
+        <EntityType Name="Order_">
+          <Key>
+            <PropertyRef Name="orderID" />
+          </Key>
+          <Property Name="orderID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email_id" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Proid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="status_" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.efk_id" FromRole="Order_" ToRole="Customer" />
+          <NavigationProperty Name="Product" Relationship="DairyHubModel.ofk_id" FromRole="Order_" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="tblUSer">
+          <Key>
+            <PropertyRef Name="emailid" />
+          </Key>
+          <Property Name="emailid" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usertype" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="efk_id">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Order_" Type="Self.Order_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Email_id" />
+            </Principal>
+            <Dependent Role="Order_">
+              <PropertyRef Name="Email_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DairyHubEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Order_" EntityType="Self.Order_" />
+          <EntitySet Name="tblUSers" EntityType="Self.tblUSer" />
+          <AssociationSet Name="efk_id" Association="Self.efk_id">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Order_" EntitySet="Order_" />
+          </AssociationSet>
+          <EntitySet Name="imgdatas" EntityType="DairyHubModel.imgdata" />
+          <EntitySet Name="Products" EntityType="DairyHubModel.Product" />
+          <AssociationSet Name="ofk_id" Association="DairyHubModel.ofk_id">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Order_" EntitySet="Order_" />
+          </AssociationSet>
+          <EntitySet Name="ProductCategories" EntityType="DairyHubModel.ProductCategory" />
+          <AssociationSet Name="fk_id" Association="DairyHubModel.fk_id">
+            <End Role="ProductCategory" EntitySet="ProductCategories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="imgdata">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="filename" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Proid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Catid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Proid" />
+          </Key>
+          <Property Name="Proid" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Catid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="isActive" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order_" Relationship="DairyHubModel.ofk_id" FromRole="Product" ToRole="Order_" />
+          <NavigationProperty Name="ProductCategory" Relationship="DairyHubModel.fk_id" FromRole="Product" ToRole="ProductCategory" />
+        </EntityType>
+        <Association Name="ofk_id">
+          <End Type="DairyHubModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="DairyHubModel.Order_" Role="Order_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Proid" />
+            </Principal>
+            <Dependent Role="Order_">
+              <PropertyRef Name="Proid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProductCategory">
+          <Key>
+            <PropertyRef Name="Catid" />
+          </Key>
+          <Property Name="Catid" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CatName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Products" Relationship="DairyHubModel.fk_id" FromRole="ProductCategory" ToRole="Product" />
+        </EntityType>
+        <Association Name="fk_id">
+          <End Type="DairyHubModel.ProductCategory" Role="ProductCategory" Multiplicity="0..1" />
+          <End Type="DairyHubModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategory">
+              <PropertyRef Name="Catid" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="Catid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DairyHubModelStoreContainer" CdmEntityContainer="DairyHubEntities">
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="DairyHubModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Email_id" ColumnName="Email_id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order_">
+            <EntityTypeMapping TypeName="DairyHubModel.Order_">
+              <MappingFragment StoreEntitySet="Order_">
+                <ScalarProperty Name="orderID" ColumnName="orderID" />
+                <ScalarProperty Name="Email_id" ColumnName="Email_id" />
+                <ScalarProperty Name="Proid" ColumnName="Proid" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="status_" ColumnName="status_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUSers">
+            <EntityTypeMapping TypeName="DairyHubModel.tblUSer">
+              <MappingFragment StoreEntitySet="tblUSer">
+                <ScalarProperty Name="emailid" ColumnName="emailid" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="usertype" ColumnName="usertype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="imgdatas">
+            <EntityTypeMapping TypeName="DairyHubModel.imgdata">
+              <MappingFragment StoreEntitySet="imgdata">
+                <ScalarProperty Name="Catid" ColumnName="Catid" />
+                <ScalarProperty Name="Proid" ColumnName="Proid" />
+                <ScalarProperty Name="filename" ColumnName="filename" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="DairyHubModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Catid" ColumnName="Catid" />
+                <ScalarProperty Name="Proid" ColumnName="Proid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductCategories">
+            <EntityTypeMapping TypeName="DairyHubModel.ProductCategory">
+              <MappingFragment StoreEntitySet="ProductCategory">
+                <ScalarProperty Name="CatName" ColumnName="CatName" />
+                <ScalarProperty Name="Catid" ColumnName="Catid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

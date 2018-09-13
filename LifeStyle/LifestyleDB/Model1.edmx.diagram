@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ac2fcb8f7b8546e684b698f4f71df026" Name="Diagram1">
+        <EntityTypeShape EntityType="DairyHubModel.Customer" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DairyHubModel.Order_" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DairyHubModel.tblUSer" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="DairyHubModel.efk_id" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DairyHubModel.imgdata" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DairyHubModel.Product" Width="1.5" PointX="2.375" PointY="4.875" />
+        <AssociationConnector Association="DairyHubModel.ofk_id" />
+        <EntityTypeShape EntityType="DairyHubModel.ProductCategory" Width="1.5" PointX="0.75" PointY="5.25" />
+        <AssociationConnector Association="DairyHubModel.fk_id" />
+      </Diagram>
+      <Diagram DiagramId="a1f0a1c2cea84deea370df18ab81b88b" Name="Diagram2" />
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,60 @@
+﻿
+@model LifeStyles.Areas.Admin.Models.EntityAddImage
+@{
+    Layout = "~/Views/main.cshtml";
+    
+}
+
+<script type="text/javascript">
+     $(document).ready(function () {
+         $("#Catid").change(function () {       
+          
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ProductJSON", "AddImage")',
+                data: { idd: $("#Catid option:selected").val() },
+                success: function (data) {
+                    var items = [];
+                    items.push("<option>Select</option>");
+                    $.each(data, function () {
+                        items.push("<option value=" + this.Value + ">" + this.Text + "</option>");
+                    });
+                    $("#Proid").html(items.join(' '));
+                   
+
+                }
+            })
+        })
+    });
+</script>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        @using (Html.BeginForm("Index", "AddImage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+            <div class="col-md-5">
+                @Html.DropDownListFor(m => m.Catid, Model.DDLCategory, new { @class = "form-control" })
+            </div>
+            <div class="col-md-5">
+                @Html.DropDownListFor(m => m.Proid, Model.DDLProduct, new { @class = "form-control" })
+            </div>
+
+        <input type="file" id="file" name="file"/>
+        <input type="submit" id="b1" name="b1" value="upload"/>
+        
+        }
+    </div>
+        
+    @if (ViewBag.msg != null)
+    {
+        <h2>@ViewBag.msg</h2>
+    }
+</body>
+</html>

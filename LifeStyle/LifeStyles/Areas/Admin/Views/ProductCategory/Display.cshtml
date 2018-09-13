@@ -1,0 +1,72 @@
+﻿@model LifeStyles.Areas.Admin.Models.EntityDisplayProductCategory
+@{
+    ViewBag.title = "ProductCategory";
+
+}
+@using (Html.BeginForm("Display", "Admin/ProductCategory", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        <div class="content content-wrapper">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="x_panel_new x_title_new">
+                        <div>
+                            <div class="table-responsive-md" style="margin-top: 10px; border-top: 2px solid #E6E9ED;
+                                padding-top: 10px;">
+                                @if (Model.productcatdata.Count > 0)
+                                {
+                                <table id="tblCampaign" name="tblCampaign" class="table table-striped responsive-utilities jambo_table"
+                                       style="min-width: 100% !important; overflow-x: scroll; margin-right: 2% !important;">
+                                    <thead>
+                                        <tr style="padding: 9px !important">
+
+                                            <th style="padding: 9px !important">
+                                                CategoryID
+                                            </th>
+                                            <th style="padding: 9px !important">
+                                                Category Name
+                                            </th>
+                                            <th style="padding: 9px !important">
+                                                EDIT
+                                            </th>
+                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.productcatdata)
+                                        {
+                                            <tr class="even pointer" style="padding: 9px !important">
+
+
+                                                <td style="padding: 9px !important">
+                                                    @item.Catid
+                                                </td>
+
+                                                <td style="padding: 9px !important">
+                                                    @item.CatName
+                                                </td>
+                                                <td style="padding: 9px !important">
+                                                    <a href='@System.Configuration.ConfigurationManager.AppSettings["SitePath"].ToString()Admin/ProductCategory/Manage/@item.Catid'>
+                                                        <i class="" style="font-size: 18px;"></i>
+                                                    </a>
+                                                </td>
+                                                
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                }
+                                else
+                                {
+                                <span>No data found</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+        </div>
+        </div>
+}

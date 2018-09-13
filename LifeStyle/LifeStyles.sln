@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeStyles", "LifeStyles\LifeStyles.csproj", "{45B2E95A-F03B-4EC4-9A07-33D6CA198287}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifestyleDB", "LifestyleDB\LifestyleDB.csproj", "{5834B37B-123C-4716-A5E6-397C26C3213E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45B2E95A-F03B-4EC4-9A07-33D6CA198287}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45B2E95A-F03B-4EC4-9A07-33D6CA198287}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45B2E95A-F03B-4EC4-9A07-33D6CA198287}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45B2E95A-F03B-4EC4-9A07-33D6CA198287}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5834B37B-123C-4716-A5E6-397C26C3213E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5834B37B-123C-4716-A5E6-397C26C3213E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5834B37B-123C-4716-A5E6-397C26C3213E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5834B37B-123C-4716-A5E6-397C26C3213E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

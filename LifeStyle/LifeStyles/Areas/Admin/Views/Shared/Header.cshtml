@@ -1,0 +1,15 @@
+﻿
+<div>
+    <h1>LifeStyles</h1>
+</div>
+<span class="text-md-left"          >
+@if(ViewBag.name!=null)
+{
+<h3>@ViewBag.name</h3>
+}
+
+@if (Session["username"] != null)
+{
+    @Html.ActionLink("Logout","logoff","AdminHome")
+}
+</span>

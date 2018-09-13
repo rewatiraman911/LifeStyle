@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <style type="text/css">
+        body,.panel-footer{
+            background-color:lightcoral;
+        }
+        .container{
+            background-color:yellowgreen;
+        }
+    </style>
+    @Styles.Render("~/content/bootstrap")
+</head>
+<body>
+    <div class="container">
+        <header>
+            @Html.Partial("header")
+        </header>
+        <hr/>
+        <section class="row">
+            <div class="col-sm-2">
+                @Html.Partial("sidebar")
+            </div>
+            <div class="col-sm-10">
+                @RenderBody()
+            </div>
+        </section>
+ 
+        <footer class="panel panel-footer">
+            @Html.Partial("footer")
+        </footer> 
+    </div>
+</body> 
+</html>
